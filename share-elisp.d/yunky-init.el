@@ -7,13 +7,18 @@
 ;;yasnippet
 (yas-global-mode t)
 
+;; Edit
+(electric-pair-mode t)
+
 ;; default
+(require 'undo-tree)
 (global-set-key (kbd "C-h") 'delete-backward-char)
 (global-set-key (kbd "C-j") 'newline)
 (global-set-key (kbd "M-g") 'goto-line)
 (global-set-key (kbd "M-p") 'mark-paragraph)
 (global-set-key (kbd "M-h") 'backward-kill-word)
 (global-set-key (kbd "M-SPC") 'linum-mode)
+(global-set-key (kbd "C-x /") 'comment-or-uncomment-region)
 
 ;; hideshow
 (global-set-key (kbd "C-c h") 'hs-minor-mode)
