@@ -29,6 +29,10 @@
 (global-set-key (kbd "C-c t") 'hs-toggle-hiding)
 (global-set-key (kbd "C-c l") 'hs-hide-leve)
 
+;; shell
+(setq flymake-mode t)
+(add-hook 'sh-mode-hook 'flymake-shellcheck-load)
+
 ;; c
 (defun linux-c-mode ()
         "C mode with adjusted defaults for use with the Linux kernel."
@@ -68,5 +72,4 @@
 (global-set-key (kbd "M-.") 'godef-jump)
 (global-set-key (kbd "M-*") 'pop-tag-mark)
 (global-set-key (kbd "C-c C-g p") 'godoc-at-point)
-
 (provide 'yunky-init)
