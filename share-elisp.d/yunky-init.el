@@ -1,5 +1,16 @@
 ;; coding
 (define-coding-system-alias 'UTF-8 'utf-8)
+(setq inhibit-startup-message t)
+(setq flymake-mode t)
+(require 'auto-complete-config)
+(global-auto-complete-mode t)
+(setq-default ac-sources '(ac-source-words-in-same-mode-buffers))
+(add-hook 'auto-complete-mode-hook (lambda () (add-to-list 'ac-sources 'ac-source-filename)))
+(define-key ac-completing-map "\M-n" 'ac-next)
+(define-key ac-completing-map "\M-p" 'ac-previous)
+(setq ac-auto-start 2)
+(setq ac-dwim t)
+(define-key ac-mode-map (kbd "M-TAB") 'auto-complete)
 
 ;; amx
 (setq amx-mode t)
@@ -30,7 +41,6 @@
 (global-set-key (kbd "C-c l") 'hs-hide-leve)
 
 ;; shell
-(setq flymake-mode t)
 (add-hook 'sh-mode-hook 'flymake-shellcheck-load)
 
 ;; c
@@ -63,7 +73,6 @@
 (add-to-list 'load-path "~/go/pkg/mod/github.com/dougm/goflymake@v0.0.0-20140731161037-3b9634ef394a")
 (ac-config-default)
 (require 'go-flymake)
-(require 'auto-complete-config)
 (require 'go-autocomplete)
 (add-hook 'before-save-hook 'gofmt-before-save)
 (add-hook 'flymake-mode-hook (lambda() (local-set-key (kbd "C-c C-e n") 'flymake-goto-next-error)))
@@ -72,4 +81,13 @@
 (global-set-key (kbd "M-.") 'godef-jump)
 (global-set-key (kbd "M-*") 'pop-tag-mark)
 (global-set-key (kbd "C-c C-g p") 'godoc-at-point)
+
+;; python
+(setq auto-mode-alist (cons '("/.*\\.py$" . python-mode) auto-mode-alist))
+(setq interpreter-mode-alist(cons '("python" . python-mode)
+				  interpreter-mode-alist))
+(autoload 'python-mode "python-mode" "Python editing mode." t)
+(elpy-enable)
+
+;; load
 (provide 'yunky-init)
